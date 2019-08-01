@@ -10,7 +10,7 @@ public class Construir : MonoBehaviour
     {
         
         //aca el random range se usa para la cantidad de npcs de la escena y el For es el que lo controla e invoca al constructor
-        int n = Random.Range(4, 10);
+        int n = Random.Range(9, 20);
         
         for (int i = 0; i < n; i++)
         {
@@ -18,7 +18,7 @@ public class Construir : MonoBehaviour
             int s = Random.Range(0, 2);
             if (s == 0)
             {
-                Zombie zom = new Zombie(0, 10);
+                Zombie zom = new Zombie();
             }
             else
             {
@@ -42,7 +42,7 @@ public class Construir : MonoBehaviour
                 heroesPos.z = Random.Range(5, 30);
                 heroesPos.y = 1;
                 heroe.transform.position = heroesPos;
-                heroe = creaHeroes[1];
+                heroe = creaHeroes[i];
             }
         }
     }
@@ -51,11 +51,9 @@ public class Construir : MonoBehaviour
     {
         //este es el constructor de los zombies
         string nombre;
-        int cerebros;
-        int golpe;
         int color = Random.Range(1, 4);
 
-        public Zombie(int cerebros, int golpe)
+        public Zombie()
         {
             GameObject Mobs = GameObject.CreatePrimitive(PrimitiveType.Cube);
             Vector3 v = new Vector3();
@@ -64,8 +62,6 @@ public class Construir : MonoBehaviour
             Mobs.transform.position = v;
 
 
-            this.golpe = golpe;
-            this.cerebros = cerebros;
             string colorFinal = "";
             switch (color)
             {
