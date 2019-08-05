@@ -4,33 +4,27 @@ using UnityEngine;
 
 public class Crear : MonoBehaviour
 {
-    int h = 0;
     void Start()
     {
-        int n = Random.Range(9, 20);
+        int n = Random.Range(10, 21);
         for (int i = 0; i < n; i++)
         {
-            int s = Random.Range(0, 3);
-            if (s == 0 && h == 0)
+            int s = Random.Range(1, 3);
+            GameObject Mobs = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            Vector3 v = new Vector3();
+            v.x = Random.Range(5, 30);
+            v.z = Random.Range(5, 30);
+            Mobs.transform.position = v;
+            switch (s)
             {
-                h = 1;
+                case 1:
+                    Mobs.AddComponent(typeof(Zombie));
+                break;
+                case 2:
+                    Mobs.AddComponent(typeof(Citizen));
+                break;
             }
-            else if(s==1)
-            {
-                GameObject Mobs = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                Vector3 v = new Vector3();
-                v.x = Random.Range(5, 30);
-                v.z = Random.Range(5, 30);
-                Mobs.transform.position = v;
-            }
-            else if(s==2)
-            {
-                GameObject Mobs = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                Vector3 v = new Vector3();
-                v.x = Random.Range(5, 30);
-                v.z = Random.Range(5, 30);
-                Mobs.transform.position = v;
-            }
+            
         }
     }
 
