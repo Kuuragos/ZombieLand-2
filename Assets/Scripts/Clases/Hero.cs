@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class Hero : MonoBehaviour
 {
-    // Start is called before the first frame update
+    bool ColisionaZ;
+    bool ColisionaC;
     void Start()
     {
-        
-    }
+        gameObject.transform.name = "HeroeNya";
+        gameObject.AddComponent(typeof(Movement));
+        GameObject Cabeza = new GameObject();
+        Cabeza.AddComponent(typeof(Camera));
+        Cabeza.AddComponent(typeof(CamaraH));//codigo de camara
 
-    // Update is called once per frame
-    void Update()
+        gameObject.GetComponent<Movement>().rotar = Cabeza.GetComponent<CamaraH>();
+        Cabeza.transform.SetParent(gameObject.transform);
+        Cabeza.transform.localPosition = new Vector3(0, 0.5f, 0);
+    }
+    private void OnCollisionEnter(Collision collision)
     {
-        
+        if (collision.transform.name=="ZombieNya")
+        {
+        }
     }
 }

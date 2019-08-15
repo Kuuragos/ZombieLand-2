@@ -11,26 +11,28 @@ public class Crear : MonoBehaviour
         {
             int s = Random.Range(1, 3);
             GameObject Mobs = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            Mobs.AddComponent<Rigidbody>();
             Vector3 v = new Vector3();
             v.x = Random.Range(5, 30);
             v.z = Random.Range(5, 30);
             Mobs.transform.position = v;
-            switch (s)
+            if (i == 0)
             {
-                case 1:
-                    Mobs.AddComponent(typeof(Zombie));
-                break;
-                case 2:
-                    Mobs.AddComponent(typeof(Citizen));
-                break;
+                Mobs.AddComponent(typeof(Hero));
             }
-            
-        }
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+            else
+            {
+                switch (s)
+                {
+                    case 1:
+                        Mobs.AddComponent(typeof(Zombie));
+                        break;
+                    case 2:
+                        Mobs.AddComponent(typeof(Citizen));
+                        break;
+                }
+            }
+        }
     }
 }

@@ -8,7 +8,7 @@ public struct DatosZombie
 }
 public class Zombie : MonoBehaviour
 {
-    enum GustoZ
+    public enum GustoZ
     {
         Cerebro,
         Dedos,
@@ -36,6 +36,7 @@ public class Zombie : MonoBehaviour
                 this.GetComponent<Renderer>().material.color = Color.magenta;
                 break;
         }
+        this.name = "ZombieNya";
         StartCoroutine(Wait(2));
     }
     IEnumerator Wait(float seconds)
