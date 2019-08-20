@@ -4,25 +4,37 @@ using UnityEngine;
 
 public struct DatosZombie
 {
+    public GustoZ gz;
+    public Comportamientos cz;
+    public int gusto;
     
 }
+public enum GustoZ
+{
+    Cerebro,
+    Dedos,
+    Cuello,
+    Muslo,
+    Orejas,
+}
+public enum Comportamientos
+{
+    Idle,
+    Moving,
+}
+
 public class Zombie : MonoBehaviour
 {
-    public enum GustoZ
-    {
-        Cerebro,
-        Dedos,
-        Cuello,
-        Muslo,
-        Orejas,
-    }
-    public enum Comportamientos
-    {
-        Idle,
-        Moving,
-    }
+    public DatosZombie dato;
+    public int rotar;
+    public float rotarZ = 3f;
+    public float speedZ = 2f;
+    public string gustito;
+
     void Start()
     {
+        gustito = Mensaje();
+        gameObject.transform.tag = "ZombieNya";
        int color = Random.Range(1, 4);
        switch (color)
         {
@@ -36,40 +48,45 @@ public class Zombie : MonoBehaviour
                 this.GetComponent<Renderer>().material.color = Color.magenta;
                 break;
         }
-        this.name = "ZombieNya";
-        StartCoroutine(Wait(2));
+       
+        StartCoroutine(Wait());
     }
-    IEnumerator Wait(float seconds)
+    IEnumerator Wait()
     {
-     int posicion= Random.Range(1,5);
-     float speed = 0.5f;
-     Comportamientos Comportar =(Comportamientos )Random.Range(0,2);
-     yield return new WaitForSeconds(2);
-        switch (Comportar)
+        while (true)
         {
-            case Comportamientos.Idle:
-                transform.position = transform.position;
-            break;
-            case Comportamientos.Moving:
-                switch (posicion)
-                {
-                    case 1:
-                        transform.position += transform.forward * speed;
+            int estado = Random.Range(0, 2);
+            switch (estado)
+            {
+                case 0:
+                    dato.cz = Comportamientos.Idle;
+                    rotar = Random.Range(0, 2);
                     break;
-                    case 2:
-                        transform.position -= transform.forward * speed;
-                        break;
-                    case 3:
-                        transform.position += transform.right * speed;
-                        break;
-                    case 4:
-                        transform.position -= transform.right * speed;
-                        break;
-                }
-                
-            break;
+                case 1:
+                    dato.cz = Comportamientos.Moving;
+                    break;
+            }
+            switch (rotar)
+            {
+                case 0:
+                    rotarZ = -rotarZ;
+                    break;
+            }
+            yield return new WaitForSeconds(5f);
         }
-      StartCoroutine(Wait(2));
+      
+    }
+    public string Mensaje()
+    {
+        dato.gusto = Random.Range(0, 5);
+        dato.gz = (GustoZ)dato.gusto;
+        return "RAWWRRRR!! quiero comer " + dato.gz;
+    }
+    public void Update()
+    {
+        if (dato.cz == Comportamientos.Moving)
+            transform.position += transform.forward * speedZ * Time.deltaTime;
+        
     }
 }
 

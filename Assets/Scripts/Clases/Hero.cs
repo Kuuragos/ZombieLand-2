@@ -20,8 +20,11 @@ public class Hero : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.transform.name=="ZombieNya")
+        if (collision.transform.tag == "ZombieNya")
         {
+            Debug.Log(collision.transform.GetComponent<Zombie>().gustito);
         }
+        else if (collision.transform.tag == "AldeanoNya")
+            Debug.Log(collision.transform.GetComponent<Citizen>().meLlamo);
     }
 }
