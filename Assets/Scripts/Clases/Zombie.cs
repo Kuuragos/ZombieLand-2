@@ -31,9 +31,9 @@ public class Zombie : MonoBehaviour
     //aca se declaran las variables a usar y se  almacena los datos a mostrar para que no se cambien
     public DatosZombie dato;
     public int rotar;
-    public float rotarZ = 3f;
     public float speedZ = 2f;
     public string gustito;
+    public int direccion;
 
     void Start()
     {// gustito llama la funcion mensaje, tambien se le aplica el tag al gameobject para que se pueda reconocer
@@ -65,10 +65,10 @@ public class Zombie : MonoBehaviour
             {
                 case 0:
                     dato.cz = Comportamientos.Idle;
-                    rotar = Random.Range(0, 2);
                     break;
                 case 1:
                     dato.cz = Comportamientos.Moving;
+                    direccion = Random.Range(0, 4);
                     break;
             }
             yield return new WaitForSeconds(5f);
@@ -86,8 +86,24 @@ public class Zombie : MonoBehaviour
     public void Update()
     {
         if (dato.cz == Comportamientos.Moving)
-            transform.position += transform.forward * speedZ * Time.deltaTime;
-        
+        {
+            switch(direccion)
+            {
+                case 0:
+                    transform.position += transform.forward * speedZ * Time.deltaTime;
+                    break;
+                case 1:
+                    transform.position -= transform.forward * speedZ * Time.deltaTime;
+                    break;
+                case 2:
+                    transform.position += transform.right * speedZ * Time.deltaTime;
+                    break;
+                case 3:
+                    transform.position -= transform.right * speedZ * Time.deltaTime;
+                    break;
+            }
+            
+        }
     }
 }
 
