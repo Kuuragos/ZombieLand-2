@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class CamaraH : MonoBehaviour
 {
+    // se declararon las variables y el bool a usar ademas de un float para la sensibilidad del movimiento de la camara
     public float MouseX;
     float MouseY;
     float sensibilidad = 3.5f;
     float limitarvista;
     public bool invertedMouse;
     void Update()
-    {
+    {// aca se registra el movimiento del mouse en x & y
         float rotarx = Input.GetAxisRaw("Mouse X");
         MouseX += rotarx * sensibilidad;
 

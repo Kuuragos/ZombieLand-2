@@ -5,9 +5,9 @@ using UnityEngine;
 public class Crear : MonoBehaviour
 {
     void Start()
-    {
+    { //se declara el valor random de los cubos
         int n = Random.Range(10, 21);
-        for (int i = 0; i < n; i++)
+        for (int i = 0; i < n; i++) //este for crea los cubos y mediante un if se decide crear entre el heroe, zombies y ciudadanos llamando a sus clases
         {
             int s = Random.Range(1, 3);
             GameObject Mobs = GameObject.CreatePrimitive(PrimitiveType.Cube);
