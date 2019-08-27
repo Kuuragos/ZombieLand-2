@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using NPC.Ally;
+using NPC.Enemy;
 
 public class Hero : MonoBehaviour
 {

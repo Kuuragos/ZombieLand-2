@@ -5,11 +5,7 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 { //aca se declararon las variables que se van a utilizar
     public CamaraH rotar;
-    public float speed;
-    private void Start()
-    {//aca se modifica la velocidad del heroe
-        speed = Random.Range(0.1f, 0.3f);
-    }
+    public readonly float speed = Crear.heroSpeed;
 
     void Update()
     {//Este bloque de IF se usa para el movimiento del heroe
